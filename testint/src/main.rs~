@@ -1,0 +1,19 @@
+fn main() {
+    let a = 65u8;
+    let b = b'A';
+    let c = 65;
+    let d = 65i8;
+    let e : i8 = 65;
+    let f = 1000;
+
+
+
+    
+
+
+
+
+
+
+
+}

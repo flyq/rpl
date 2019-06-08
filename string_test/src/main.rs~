@@ -1,0 +1,17 @@
+use typename::TypeName;
+use std::io;
+
+fn main() {
+    let a = "hello";
+    let b = String::from("hello");
+    let mut c = String::new();
+    
+    println!("Please enter hello");
+    io::stdin().read_line(&mut c)
+        .expect("Failed to read line");
+
+    println!("the type of {} is {}", a, a.type_name_of());
+    println!("the type of {} is {}", b, b.type_name_of());
+    println!("the type of {} is {}", c, c.type_name_of());
+    
+}
