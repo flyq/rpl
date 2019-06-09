@@ -1,17 +1,21 @@
-fn first_word(s: &String) -> usize {
+fn first_word(s: &String) -> &str {
     let bytes = s.as_bytes();
 
     for (i, &item) in bytes.iter().enumerate() {
         if item == b' ' {
-	    return i;
-	}
+            return &s[0..i];
+        }
     }
 
-    s.len()
+    &s[..]
 }
-
 
 fn main() {
     let a = String::from("Hello world");
-    println!("{}", first_word(&a));
+
+    let word = first_word(&a);
+
+    // s.clear(); error, first delete reference, second delete var;
+    
+    println!("{}", word);
 }
