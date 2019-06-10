@@ -13,7 +13,7 @@ fn area(width: u32, height: u32) -> u32 {
     width * height
 }
 */
-
+/*
 fn main() {
     let rect1 = (30, 50);
 
@@ -26,3 +26,19 @@ fn main() {
 fn area(dimensions: (u32, u32)) -> u32 {
     dimensions.0 * dimensions.1
 }
+*/
+
+struct Rect {
+    width: u32,
+    length: u32,
+}
+
+fn main() {
+    let rect1 = Rect{ width:30, length: 50 };
+
+    println!("{}", area(&rect1));
+}
+
+fn area(rect: &Rect) -> u32{
+    rect.width*rect.length
+    }
