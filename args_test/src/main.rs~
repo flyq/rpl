@@ -1,0 +1,7 @@
+use std::env;
+
+fn main() {
+    let args: Vec<String> = env::args().collect();
+    //使用 {:?} 来输出
+    println!("{:?}", args);
+}
