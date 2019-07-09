@@ -8,3 +8,4 @@
 * https://rustlang-cn.org/office/rust/async-rust/
 * https://rustlang-cn.org/office/rust/reference/
 * https://rustlang-cn.org/office/rust/cargo/
+* https://doc.rust-lang.org/rust-by-example/index.html
