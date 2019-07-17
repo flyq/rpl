@@ -1,14 +1,12 @@
 fn main() {
+    let num = String::from("test");
 
-    let mut num = 5;
+    {
+        let add_num = move |x: String| x;
 
-{
-    let mut add_num = move |x: i32| num += x;
+        println!("{}", add_num(num));
+    }
 
-    add_num(5);
-}
-
-assert_eq!(5, num);
-
-
+    // println!("{}", num);
+    println!("{}", "can't print num");
 }
