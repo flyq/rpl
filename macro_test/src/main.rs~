@@ -1,0 +1,9 @@
+macro_rule! say_hello {
+    () => (
+        println!("Hello!");
+    )
+}
+
+fn main() {
+    say_hello!()
+}
