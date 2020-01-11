@@ -1,0 +1,10 @@
+fn main() {
+    println!("Hello, world!");
+
+    let x = 5;
+    match x {
+        
+        e @ 1 ..= 5 | e @ 8 .. 10 => println!("got it {}", e),
+        _ => println!("anything"),
+    }
+}
