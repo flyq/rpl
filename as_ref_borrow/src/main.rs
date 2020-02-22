@@ -1,3 +1,5 @@
+#![feature(core_intrinsics)]
+
 // as_ref和Borrow的区别 ?
 
 // as_ref 是转引用函数, 将具有所有权对象转换成引用对象,
@@ -23,7 +25,10 @@
 fn borrow_example() {
     let s = 1;
     let x = &s;                                                                // 直接引用
+    
     println!("s:{}; x: {}", s, x);
+    print_type_of(&s);
+    print_type_of(&x);
 }
 
 
@@ -39,6 +44,8 @@ fn borrow_nest_example() {
     let s = 1234;
     let z = hello(Some(&s));                                                   // 传入之前要先把引用声明好.
     println!("s: {};  z: {:?}", s, z);
+    print_type_of(&s);
+    print_type_of(&z);        
 }
 
 
@@ -47,6 +54,9 @@ fn borrow_nest_example() {
 fn borrow_reference_to_reference() {
     let a: &str = "str";
     let b: &&str = &a;
+    println!("a: {:?}; b: {:?}", a, b);
+    print_type_of(&a);
+    print_type_of(&b);
 }
 
 
@@ -60,6 +70,7 @@ fn as_ref_example() {
     fn hello<T: AsRef<str>>(x: T) {
         let xx = x.as_ref();
         println!("xx: {}", xx);
+        print_type_of(&xx);
     }
     let s = String::from("hello");
     hello(s);
@@ -71,13 +82,17 @@ fn as_ref_nest_example() {
     // as_ref 非常适合这种场景, 简单快捷.
 
     fn hello(x: Option<i32>) -> Option<i32> {
-        x.as_ref();                                                            // Option<i32>  to  Option<&i32> 很方便后续代码的编写.
+        let a = x.as_ref();        // Option<i32>  to  Option<&i32> 很方便后续代码的编写.
+        println!("{:?}", a);
         x
+        
     }
 
     let s = 1234;
     let z = hello(Some(s));
     println!("s: {}; z: {:?}", s, z);
+    print_type_of(&s);
+    print_type_of(&z);
 }
 
 
@@ -87,12 +102,19 @@ fn as_ref_reference_to_reference() {
     fn hello<T: AsRef<str>>(x: T) {
         let y: &str = x.as_ref();
         let z: &str = y.as_ref();                   // 引用上再引用, 永远只有一层引用.
+        println!("y: {:?}; z: {:?}", y, z);
+        print_type_of(&y);
+        print_type_of(&z);
     }
 
     let s = "hello";
     hello(s);
 }
 
+
+fn print_type_of<T>(_: &T) {
+    println!("{}", unsafe { std::intrinsics::type_name::<T>() });
+}
 
 fn main() {
     borrow_example();
