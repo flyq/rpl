@@ -1,0 +1,20 @@
+use std::borrow::Borrow;
+use std::fmt::Display;
+
+fn foo<T: Borrow<i32> + Display>(a: T) {
+    println!("a is borrowed: {}", a);
+}
+
+fn foo2<T: Borrow<i32> + Display>(a: &T) {
+    println!("a is borrowed: {}", a);
+}
+
+fn main() {
+    let mut i = 5;
+    
+    foo(&i);
+    foo(&mut i);
+    
+    foo2(&i);
+    foo2(&mut i);
+}
